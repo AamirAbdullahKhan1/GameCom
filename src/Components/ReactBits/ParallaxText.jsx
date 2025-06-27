@@ -1,13 +1,19 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const ParallaxText = ({ children, speed = 0.5, className = "" }) => {
-  const [offsetY, setOffsetY] = useState(0)
+  const ref = useRef()
+  const [offset, setOffset] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffsetY(window.pageYOffset * speed)
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect()
+        const scrolled = window.pageYOffset
+        const rate = scrolled * speed
+        setOffset(rate)
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -16,9 +22,10 @@ const ParallaxText = ({ children, speed = 0.5, className = "" }) => {
 
   return (
     <div
-      className={className}
+      ref={ref}
+      className={`parallax-text ${className}`}
       style={{
-        transform: `translateY(${offsetY}px)`,
+        transform: `translateY(${offset}px)`,
       }}
     >
       {children}

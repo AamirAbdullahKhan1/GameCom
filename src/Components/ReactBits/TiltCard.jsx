@@ -1,46 +1,45 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useEffect } from "react"
 
 const TiltCard = ({ children, className = "", tiltMaxAngleX = 15, tiltMaxAngleY = 15, scale = 1.05 }) => {
-  const ref = useRef(null)
-  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef()
 
-  const handleMouseMove = (e) => {
-    if (!ref.current) return
+  useEffect(() => {
+    const card = cardRef.current
+    if (!card) return
 
-    const rect = ref.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
+    const handleMouseMove = (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
 
-    const rotateX = ((y - centerY) / centerY) * -tiltMaxAngleX
-    const rotateY = ((x - centerX) / centerX) * tiltMaxAngleY
+      const rotateX = ((y - centerY) / centerY) * tiltMaxAngleX
+      const rotateY = ((centerX - x) / centerX) * tiltMaxAngleY
 
-    ref.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`
-  }
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`
+    }
 
-  const handleMouseLeave = () => {
-    if (!ref.current) return
-    ref.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
-    setIsHovered(false)
-  }
+    const handleMouseLeave = () => {
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
+    }
 
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    card.addEventListener("mousemove", handleMouseMove)
+    card.addEventListener("mouseleave", handleMouseLeave)
+
+    return () => {
+      card.removeEventListener("mousemove", handleMouseMove)
+      card.removeEventListener("mouseleave", handleMouseLeave)
+    }
+  }, [tiltMaxAngleX, tiltMaxAngleY, scale])
 
   return (
     <div
-      ref={ref}
-      className={`transition-transform duration-200 ease-out ${className}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-      style={{
-        transformStyle: "preserve-3d",
-      }}
+      ref={cardRef}
+      className={`tilt-card transition-transform duration-200 ease-out ${className}`}
+      style={{ transformStyle: "preserve-3d" }}
     >
       {children}
     </div>

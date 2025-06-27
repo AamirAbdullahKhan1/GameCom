@@ -13,21 +13,23 @@ const FloatingElements = ({ count = 20, className = "" }) => {
       size: Math.random() * 4 + 2,
       duration: Math.random() * 20 + 10,
       delay: Math.random() * 5,
+      opacity: Math.random() * 0.5 + 0.1,
     }))
     setElements(newElements)
   }, [count])
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`fixed inset-0 pointer-events-none overflow-hidden ${className}`}>
       {elements.map((element) => (
         <div
           key={element.id}
-          className="absolute rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 animate-pulse"
+          className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
           style={{
             left: `${element.x}%`,
             top: `${element.y}%`,
             width: `${element.size}px`,
             height: `${element.size}px`,
+            opacity: element.opacity,
             animation: `float ${element.duration}s ease-in-out infinite`,
             animationDelay: `${element.delay}s`,
           }}
