@@ -32,41 +32,34 @@ const AnimatedButton = ({
     setTimeout(() => {
       setRipples((prev) => prev.filter((ripple) => ripple.id !== newRipple.id))
     }, 600)
+
+    if (onClick) onClick(event)
   }
 
-  const handleClick = (event) => {
-    if (!disabled) {
-      createRipple(event)
-      onClick?.(event)
-    }
-  }
-
-  const baseClasses =
-    "relative overflow-hidden font-semibold transition-all duration-300 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+  const baseClasses = "relative overflow-hidden transition-all duration-300 font-medium rounded-full"
 
   const variantClasses = {
-    primary:
-      "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl",
+    primary: "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white",
     secondary: "border-2 border-gray-600 hover:bg-gray-800 hover:border-gray-500 text-white",
-    ghost: "hover:bg-gray-800/50 text-gray-300 hover:text-white",
+    ghost: "hover:bg-gray-800 text-gray-400 hover:text-white",
   }
 
   const sizeClasses = {
-    sm: "px-4 py-2 text-sm rounded-lg",
-    md: "px-6 py-3 text-base rounded-xl",
-    lg: "px-8 py-4 text-lg rounded-xl",
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg",
   }
+
+  const disabledClasses = disabled ? "opacity-50 cursor-not-allowed" : "hover:scale-105 active:scale-95"
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
-      onClick={handleClick}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className} flex items-center justify-center gap-2`}
+      onClick={createRipple}
       disabled={disabled}
       {...props}
     >
-      <span className="relative z-10 flex items-center gap-2">{children}</span>
-
-      {/* Ripple Effect */}
+      {children}
       {ripples.map((ripple) => (
         <span
           key={ripple.id}
@@ -80,9 +73,6 @@ const AnimatedButton = ({
           }}
         />
       ))}
-
-      {/* Shine Effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
     </button>
   )
 }

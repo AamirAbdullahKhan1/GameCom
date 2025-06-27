@@ -13,13 +13,15 @@ const DecryptedText = ({
   const [displayText, setDisplayText] = useState("")
   const [isVisible, setIsVisible] = useState(false)
   const [isDecrypting, setIsDecrypting] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
   const ref = useRef()
   const intervalRef = useRef()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isDecrypting) {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true)
           setTimeout(() => {
             setIsVisible(true)
             startDecryption()
@@ -39,7 +41,7 @@ const DecryptedText = ({
         clearInterval(intervalRef.current)
       }
     }
-  }, [delay, isDecrypting])
+  }, [delay, hasStarted])
 
   const getRandomChar = () => {
     return characters[Math.floor(Math.random() * characters.length)]
@@ -51,12 +53,15 @@ const DecryptedText = ({
     setIsDecrypting(true)
     let currentIndex = 0
     const targetText = text
-    const scrambleArray = new Array(targetText.length).fill("").map(() => getRandomChar())
+    const scrambleArray = new Array(targetText.length)
+      .fill("")
+      .map((_, i) => (targetText[i] === " " ? " " : getRandomChar()))
 
     setDisplayText(scrambleArray.join(""))
 
     intervalRef.current = setInterval(() => {
       if (currentIndex < targetText.length) {
+        // Set the current character to the correct one
         scrambleArray[currentIndex] = targetText[currentIndex]
         currentIndex++
 
@@ -71,13 +76,14 @@ const DecryptedText = ({
       } else {
         clearInterval(intervalRef.current)
         setIsDecrypting(false)
+        setDisplayText(targetText) // Ensure final text is correct
       }
     }, duration / targetText.length)
   }
 
   return (
     <div ref={ref} className={`font-mono ${className}`}>
-      <span className={`inline-block transition-all duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+      <span className={`inline-block transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}>
         {displayText || text}
       </span>
     </div>

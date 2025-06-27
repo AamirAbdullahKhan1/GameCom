@@ -10,8 +10,9 @@ const CountUpAnimation = ({ end, start = 0, duration = 2000, suffix = "", prefix
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !isVisible) {
           setIsVisible(true)
+          animateCount()
         }
       },
       { threshold: 0.1 },
@@ -22,18 +23,16 @@ const CountUpAnimation = ({ end, start = 0, duration = 2000, suffix = "", prefix
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [isVisible])
 
-  useEffect(() => {
-    if (!isVisible) return
-
-    let startTime
+  const animateCount = () => {
+    const startTime = Date.now()
     const startValue = start
     const endValue = end
 
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / duration, 1)
+    const updateCount = () => {
+      const now = Date.now()
+      const progress = Math.min((now - startTime) / duration, 1)
 
       const easeOutQuart = 1 - Math.pow(1 - progress, 4)
       const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart)
@@ -41,12 +40,12 @@ const CountUpAnimation = ({ end, start = 0, duration = 2000, suffix = "", prefix
       setCount(currentCount)
 
       if (progress < 1) {
-        requestAnimationFrame(animate)
+        requestAnimationFrame(updateCount)
       }
     }
 
-    requestAnimationFrame(animate)
-  }, [isVisible, start, end, duration])
+    requestAnimationFrame(updateCount)
+  }
 
   return (
     <span ref={ref}>

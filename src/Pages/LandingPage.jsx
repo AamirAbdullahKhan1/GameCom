@@ -36,13 +36,13 @@ import TestimonialCarousel from "../components/TestimonialCarousel"
 import TeamSection from "../components/TeamSection"
 
 // React Bits Components
-import AnimatedButton from "../Components/ReactBits/AnimatedButton"
 import CountUpAnimation from "../Components/ReactBits/CountUpAnimation"
-import FloatingElements from "../Components/ReactBits/FloatingElements"
-import GlowingCard from "../Components/ReactBits/GlowingCard"
-import ParallaxText from "../Components/ReactBits/ParallaxText"
-import TextReveal from "../Components/ReactBits/TextReveal"
 import TiltCard from "../Components/ReactBits/TiltCard"
+import AnimatedButton from "../Components/ReactBits/AnimatedButton"
+import DecryptedText from "../Components/ReactBits/DecryptedText"
+import GlowingCard from "../Components/ReactBits/GlowingCard"
+import FloatingElements from "../Components/ReactBits/FloatingElements"
+import ParallaxText from "../Components/ReactBits/ParallaxText"
 
 const LandingPage = () => {
   const [currentProjectSlide, setCurrentProjectSlide] = useState(0)
@@ -261,19 +261,24 @@ const LandingPage = () => {
             </TiltCard>
           </div>
 
-          {/* Animated Title */}
+          {/* Enhanced Decrypted Title Animation */}
           <div className="relative mb-6">
-            <TextReveal
-              text="GameCom"
+            <DecryptedText
+              text="GAMECOM"
               className="text-5xl sm:text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-              stagger={0.1}
+              delay={500}
+              duration={3000}
+              scrambleSpeed={30}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent opacity-50 blur-sm">
-              <TextReveal
-                text="GameCom"
+
+            {/* Glowing background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent opacity-20 blur-sm">
+              <DecryptedText
+                text="GAMECOM"
                 className="text-5xl sm:text-6xl md:text-8xl font-bold"
-                delay={500}
-                stagger={0.1}
+                delay={800}
+                duration={3000}
+                scrambleSpeed={30}
               />
             </div>
           </div>
@@ -287,12 +292,14 @@ const LandingPage = () => {
             </div>
           </ParallaxText>
 
-          <TextReveal
-            text="Where Innovation Meets Gaming Excellence • Building Tomorrow's Tech Leaders"
-            className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed max-w-4xl mx-auto px-4"
-            delay={1000}
-            stagger={0.02}
-          />
+          <div className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed max-w-4xl mx-auto px-4">
+            <DecryptedText
+              text="Where Innovation Meets Gaming Excellence • Building Tomorrow's Tech Leaders"
+              delay={4000}
+              duration={2000}
+              scrambleSpeed={40}
+            />
+          </div>
 
           <p className="text-base sm:text-lg mb-12 text-gray-400 max-w-3xl mx-auto leading-relaxed px-4">
             Join India's most dynamic student-led technology community. Master cutting-edge skills, build incredible
@@ -349,9 +356,11 @@ const LandingPage = () => {
       <section id="projects" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal
-              text="Featured Projects"
+            <DecryptedText
+              text="FEATURED PROJECTS"
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              delay={200}
+              duration={2000}
             />
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
               Discover the incredible projects our talented members have built, from award-winning games to innovative
@@ -465,9 +474,11 @@ const LandingPage = () => {
       <section id="domains" className="relative z-10 py-12 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal
-              text="Our Domains"
+            <DecryptedText
+              text="OUR DOMAINS"
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              delay={200}
+              duration={2000}
             />
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
               Explore diverse pathways to excellence across technology, creativity, and innovation. Each domain offers
@@ -537,9 +548,11 @@ const LandingPage = () => {
       <section id="gallery" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal
-              text="Event Gallery"
+            <DecryptedText
+              text="EVENT GALLERY"
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              delay={200}
+              duration={2000}
             />
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
               Relive the excitement of our amazing events, workshops, and achievements throughout the year
@@ -587,9 +600,11 @@ const LandingPage = () => {
       <section className="relative z-10 py-12 sm:py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal
-              text="Our Achievements"
+            <DecryptedText
+              text="OUR ACHIEVEMENTS"
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              delay={200}
+              duration={2000}
             />
             <p className="text-lg sm:text-xl text-gray-400 px-4">
               Celebrating excellence and innovation in everything we do
@@ -619,9 +634,11 @@ const LandingPage = () => {
       <section className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal
-              text="What Our Members Say"
+            <DecryptedText
+              text="WHAT OUR MEMBERS SAY"
               className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              delay={200}
+              duration={2000}
             />
             <p className="text-lg sm:text-xl text-gray-400 px-4">
               Hear from our amazing community of current members and successful alumni
@@ -638,9 +655,11 @@ const LandingPage = () => {
       {/* Enhanced Call to Action */}
       <section className="relative z-10 py-12 sm:py-20 px-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
-          <TextReveal
-            text="Ready to Join Us?"
+          <DecryptedText
+            text="READY TO JOIN US?"
             className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            delay={200}
+            duration={2000}
           />
           <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed px-4">
             Take the first step towards an incredible journey of learning, building, and growing with like-minded
