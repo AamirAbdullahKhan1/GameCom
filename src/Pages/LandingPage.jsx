@@ -35,6 +35,16 @@ import AnimatedBackground from "../Components/AnimatedBackground"
 import TestimonialCarousel from "../Components/TestimonialCarousel"
 import TeamSection from "../Components/TeamSection"
 
+//React Bit Components
+
+import CountUpAnimation from "../Components/ReactBits/CountUpAnimation"
+import TiltCard from "../Components/ReactBits/TiltCard"
+import AnimatedButton from "../Components/ReactBits/AnimatedButton"
+import TextReveal from "../Components/ReactBits/TextReveal"
+import GlowingCard from "../Components/ReactBits/GlowingCard"
+import FloatingElements from "../Components/ReactBits/FloatingElements"
+import ParallaxText from "../Components/ReactBits/ParallaxText"
+
 const LandingPage = () => {
   const [currentProjectSlide, setCurrentProjectSlide] = useState(0)
 
@@ -47,7 +57,8 @@ const LandingPage = () => {
       color: "from-blue-500 to-cyan-500",
       projects: ["Web Applications", "Mobile Apps", "AI Solutions", "Cloud Systems"],
       members: 15,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      glowColor: "blue",
     },
     {
       icon: Camera,
@@ -57,7 +68,8 @@ const LandingPage = () => {
       color: "from-purple-500 to-pink-500",
       projects: ["Event Coverage", "Promotional Videos", "Motion Graphics", "Photography"],
       members: 8,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1497015289639-54688650d173?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      glowColor: "purple",
     },
     {
       icon: Palette,
@@ -67,7 +79,8 @@ const LandingPage = () => {
       color: "from-green-500 to-teal-500",
       projects: ["UI/UX Design", "Brand Identity", "Digital Art", "Prototypes"],
       members: 10,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1602576666092-bf6447a729fc?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      glowColor: "green",
     },
     {
       icon: Gamepad2,
@@ -77,7 +90,8 @@ const LandingPage = () => {
       color: "from-orange-500 to-red-500",
       projects: ["Mobile Games", "PC Games", "VR Experiences", "Game Engines"],
       members: 7,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      glowColor: "red",
     },
     {
       icon: Megaphone,
@@ -87,7 +101,8 @@ const LandingPage = () => {
       color: "from-indigo-500 to-purple-500",
       projects: ["Industry Events", "Partnerships", "Social Media", "Networking"],
       members: 5,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1709715357549-f2d587846ee1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      glowColor: "purple",
     },
   ]
 
@@ -220,10 +235,10 @@ const LandingPage = () => {
   ]
 
   const stats = [
-    { number: "500+", label: "Active Members", icon: Users },
-    { number: "100+", label: "Projects Completed", icon: Code },
-    { number: "50+", label: "Industry Partners", icon: Zap },
-    { number: "25+", label: "Events This Year", icon: Calendar },
+    { number: "500", label: "Active Members", icon: Users },
+    { number: "100", label: "Projects Completed", icon: Code },
+    { number: "50", label: "Industry Partners", icon: Zap },
+    { number: "25", label: "Events This Year", icon: Calendar },
   ]
 
   return (
@@ -468,7 +483,7 @@ const LandingPage = () => {
       </section>
 
       {/* Event Gallery */}
-      <section id="gallery" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
+      {/**<section id="gallery" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -515,7 +530,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
+}
       {/* Achievements Section */}
       <section className="relative z-10 py-12 sm:py-20 px-4">
         <div className="max-w-6xl mx-auto">

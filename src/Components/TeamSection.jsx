@@ -4,68 +4,86 @@ import { Crown, Linkedin } from "lucide-react"
 const TeamSection = () => {
   const teamMembers = [
     {
-      name: "Rahul Kumar",
+      name: "Aamir Abdullah Khan",
       role: "President",
-      image: "/placeholder.svg?height=150&width=150",
+      image: "https://imgur.com/jQrK2Nf.jpg",
       domain: "Leadership",
-      linkedin: "https://linkedin.com/in/rahul-kumar",
-      bio: "Leading GameCom with vision and passion for innovation",
+      linkedin: "https://www.linkedin.com/in/aamir-abdullah-khan/",
+      bio: "Visionary leader driving GameCom's mission to innovate, empower, and revolutionize the intersection of gaming and technology.",
     },
     {
-      name: "Priya Singh",
+      name: "Swethaa",
       role: "Vice President",
-      image: "/placeholder.svg?height=150&width=150",
+      image: "https://imgur.com/mpqlDzy.jpg",
       domain: "Leadership",
-      linkedin: "https://linkedin.com/in/priya-singh",
-      bio: "Driving strategic initiatives and member engagement",
+      linkedin: "https://www.linkedin.com/in/j-s-4819682b0/",
+      bio: "Strategic collaborator and dynamic leader, ensuring the smooth execution of GameCom’s initiatives and fostering a culture of growth and excellence.",
+      position: "center calc(0% - 0px)",
     },
     {
-      name: "Arjun Mehta",
+      name: "Rajeev Suri Anand",
+      role: "Administrator",
+      image: "https://imgur.com/tCkd7Jw.jpg",
+      domain: "Management",
+      linkedin: "https://www.linkedin.com/in/rajeev-suri-anand-73b3a3296/",
+      bio: "The organizational backbone, ensuring efficiency, coordination, and a seamless foundation for the club’s operations and success.",
+    },
+    {
+      name: "Adityanshu Padhy",
+      role: "Director",
+      image: "https://imgur.com/b2h3VU4.jpg",
+      domain: "Management",
+      linkedin: "https://www.linkedin.com/in/adityanshu-padhy-672945293/",
+      bio: "The guiding force behind GameCom’s strategic direction, bridging creative vision with operational execution for impactful outcomes.",
+      position: "center calc(0% - 0px)",
+    },
+    {
+      name: "Kanishak Bishnoi",
       role: "Technical Lead",
       image: "/placeholder.svg?height=150&width=150",
       domain: "Technical",
-      linkedin: "https://linkedin.com/in/arjun-mehta",
-      bio: "Full-stack developer with expertise in modern web technologies",
-    },
-    {
-      name: "Sneha Patel",
-      role: "Design Lead",
-      image: "/placeholder.svg?height=150&width=150",
-      domain: "Design",
-      linkedin: "https://linkedin.com/in/sneha-patel",
-      bio: "Creating beautiful user experiences and visual identities",
-    },
-    {
-      name: "Vikram Shah",
-      role: "Game Dev Lead",
-      image: "/placeholder.svg?height=150&width=150",
-      domain: "Game Dev",
       linkedin: "https://linkedin.com/in/vikram-shah",
-      bio: "Building immersive games with Unity and Unreal Engine",
+      bio: "Innovative problem solver and tech guru, spearheading GameCom's technical endeavors and empowering members with cutting-edge knowledge.",
     },
     {
-      name: "Ananya Gupta",
-      role: "Media Head",
+      name: "Vignesh AS",
+      role: "Head Of Media",
       image: "/placeholder.svg?height=150&width=150",
       domain: "Media",
       linkedin: "https://linkedin.com/in/ananya-gupta",
-      bio: "Capturing moments and creating compelling visual stories",
+      bio: "Storyteller extraordinaire, capturing and curating GameCom's journey through compelling media that resonates and inspires.",
     },
     {
-      name: "Karthik Raj",
-      role: "PR Lead",
+      name: "Abhinav Pillai",
+      role: "Design Lead",
+      image: "/placeholder.svg?height=150&width=150",
+      domain: "Design",
+      linkedin: "https://linkedin.com/in/karthik-raj",
+      bio: "Creative visionary crafting GameCom's identity through impactful designs, blending aesthetics with purpose to captivate and inspire.",
+    },
+    {
+      name: "Vansh Jain",
+      role: "Game Dev Lead",
+      image: "/placeholder.svg?height=150&width=150",
+      domain: "Game Dev",
+      linkedin: "https://linkedin.com/in/divya-sharma",
+      bio: "Passionate innovator and gaming expert, leading GameCom's efforts in creating immersive gaming experiences and empowering future developers.",
+    },
+    {
+      name: "Somebody",
+      role: "Public Relations",
       image: "/placeholder.svg?height=150&width=150",
       domain: "PR",
-      linkedin: "https://linkedin.com/in/karthik-raj",
-      bio: "Building industry connections and partnerships",
+      linkedin: "https://linkedin.com/in/divya-sharma",
+      bio: "Master communicator and strategist, building GameCom's public image, fostering connections, and amplifying its voice across communities.",
     },
     {
-      name: "Divya Sharma",
-      role: "Creative Director",
+      name: "Hemantheshwar Reddy",
+      role: "Creative Videographer",
       image: "/placeholder.svg?height=150&width=150",
-      domain: "Creative",
+      domain: "Media",
       linkedin: "https://linkedin.com/in/divya-sharma",
-      bio: "Orchestrating creative campaigns and brand experiences",
+      bio: "Visual storyteller, translating ideas into dynamic videos that showcase the creativity and innovation driving GameCom forward.",
     },
   ]
 
@@ -85,11 +103,13 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-gray-800/50 rounded-2xl p-4 sm:p-6 text-center border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
+              className={`bg-gray-800/50 rounded-2xl p-4 sm:p-6 text-center border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl group w-full max-w-sm ${
+                teamMembers.length % 3 !== 0 && index >= Math.floor(teamMembers.length / 3) * 3 ? "xl:col-start-2" : ""
+              }`}
             >
               <div className="relative mb-4">
                 <div className="relative cursor-pointer" onClick={() => handleLinkedInClick(member.linkedin)}>
@@ -97,11 +117,10 @@ const TeamSection = () => {
                     src={member.image || "/placeholder.svg"}
                     alt={member.name}
                     className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto border-4 border-blue-400/50 group-hover:border-blue-400 transition-all duration-300 object-cover"
+                    style={{objectPosition: member.position}}
                   />
                   {/* LinkedIn overlay on hover */}
-                  <div className="absolute inset-0 bg-blue-600/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Linkedin className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                  </div>
+                  
                 </div>
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                   <Crown className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -117,14 +136,14 @@ const TeamSection = () => {
               </span>
 
               {/* Bio text */}
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed opacity-100  transition-opacity duration-300">
                 {member.bio}
               </p>
 
               {/* LinkedIn button */}
               <button
                 onClick={() => handleLinkedInClick(member.linkedin)}
-                className="mt-3 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm opacity-0 group-hover:opacity-100 duration-300"
+                className="mt-3 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-[16px] opacity-100  duration-300"
               >
                 <Linkedin className="w-4 h-4" />
                 Connect
