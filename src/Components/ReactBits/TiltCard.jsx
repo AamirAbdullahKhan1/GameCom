@@ -2,42 +2,45 @@
 
 import { useRef, useEffect } from "react"
 
-const TiltCard = ({ children, className = "", tiltMaxAngleX = 15, tiltMaxAngleY = 15, scale = 1.05 }) => {
-  const ref = useRef()
+const TiltCard = ({ children, className = "", intensity = 15, scale = 1.05, disabled = false }) => {
+  const cardRef = useRef(null)
 
   useEffect(() => {
-    const element = ref.current
-    if (!element) return
+    if (disabled) return
+
+    const card = cardRef.current
+    if (!card) return
 
     const handleMouseMove = (e) => {
-      const rect = element.getBoundingClientRect()
+      const rect = card.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
+
       const centerX = rect.width / 2
       const centerY = rect.height / 2
 
-      const rotateX = ((y - centerY) / centerY) * tiltMaxAngleX
-      const rotateY = ((centerX - x) / centerX) * tiltMaxAngleY
+      const rotateX = ((y - centerY) / centerY) * intensity
+      const rotateY = ((centerX - x) / centerX) * intensity
 
-      element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`
     }
 
     const handleMouseLeave = () => {
-      element.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
     }
 
-    element.addEventListener("mousemove", handleMouseMove)
-    element.addEventListener("mouseleave", handleMouseLeave)
+    card.addEventListener("mousemove", handleMouseMove)
+    card.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
-      element.removeEventListener("mousemove", handleMouseMove)
-      element.removeEventListener("mouseleave", handleMouseLeave)
+      card.removeEventListener("mousemove", handleMouseMove)
+      card.removeEventListener("mouseleave", handleMouseLeave)
     }
-  }, [tiltMaxAngleX, tiltMaxAngleY, scale])
+  }, [intensity, scale, disabled])
 
   return (
     <div
-      ref={ref}
+      ref={cardRef}
       className={`transition-transform duration-200 ease-out ${className}`}
       style={{ transformStyle: "preserve-3d" }}
     >

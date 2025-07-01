@@ -1,56 +1,70 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 
-const CountUpAnimation = ({ end, start = 0, duration = 2000, suffix = "", prefix = "" }) => {
+const CountUpAnimation = ({
+  end,
+  start = 0,
+  duration = 2000,
+  suffix = "",
+  prefix = "",
+  separator = "",
+  decimals = 0,
+}) => {
   const [count, setCount] = useState(start)
   const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef()
+  const countRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true)
-          animateCount()
         }
       },
       { threshold: 0.1 },
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    if (countRef.current) {
+      observer.observe(countRef.current)
     }
 
     return () => observer.disconnect()
   }, [isVisible])
 
-  const animateCount = () => {
-    const startTime = Date.now()
+  useEffect(() => {
+    if (!isVisible) return
+
+    let startTime = null
     const startValue = start
     const endValue = end
 
-    const updateCount = () => {
-      const now = Date.now()
-      const progress = Math.min((now - startTime) / duration, 1)
+    const animate = (currentTime) => {
+      if (startTime === null) startTime = currentTime
+      const progress = Math.min((currentTime - startTime) / duration, 1)
 
       const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-      const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart)
+      const currentCount = startValue + (endValue - startValue) * easeOutQuart
 
       setCount(currentCount)
 
       if (progress < 1) {
-        requestAnimationFrame(updateCount)
+        requestAnimationFrame(animate)
       }
     }
 
-    requestAnimationFrame(updateCount)
+    requestAnimationFrame(animate)
+  }, [isVisible, start, end, duration])
+
+  const formatNumber = (num) => {
+    const rounded = Math.floor(num * Math.pow(10, decimals)) / Math.pow(10, decimals)
+    return separator ? rounded.toLocaleString() : rounded.toString()
   }
 
   return (
-    <span ref={ref}>
+    <span ref={countRef}>
       {prefix}
-      {count}
+      {formatNumber(count)}
       {suffix}
     </span>
   )

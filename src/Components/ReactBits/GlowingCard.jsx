@@ -2,25 +2,28 @@
 
 import { useRef, useEffect, useState } from "react"
 
-const GlowingCard = ({ children, className = "", glowColor = "blue" }) => {
-  const ref = useRef()
+const GlowingCard = ({ children, className = "", glowColor = "blue", intensity = 0.3, disabled = false }) => {
+  const cardRef = useRef(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
   const glowColors = {
-    blue: "rgba(59, 130, 246, 0.5)",
-    purple: "rgba(147, 51, 234, 0.5)",
-    green: "rgba(34, 197, 94, 0.5)",
-    red: "rgba(239, 68, 68, 0.5)",
-    yellow: "rgba(234, 179, 8, 0.5)",
+    blue: "59, 130, 246",
+    purple: "147, 51, 234",
+    green: "34, 197, 94",
+    red: "239, 68, 68",
+    yellow: "245, 158, 11",
+    pink: "236, 72, 153",
   }
 
   useEffect(() => {
-    const element = ref.current
-    if (!element) return
+    if (disabled) return
+
+    const card = cardRef.current
+    if (!card) return
 
     const handleMouseMove = (e) => {
-      const rect = element.getBoundingClientRect()
+      const rect = card.getBoundingClientRect()
       setMousePosition({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
@@ -30,27 +33,32 @@ const GlowingCard = ({ children, className = "", glowColor = "blue" }) => {
     const handleMouseEnter = () => setIsHovered(true)
     const handleMouseLeave = () => setIsHovered(false)
 
-    element.addEventListener("mousemove", handleMouseMove)
-    element.addEventListener("mouseenter", handleMouseEnter)
-    element.addEventListener("mouseleave", handleMouseLeave)
+    card.addEventListener("mousemove", handleMouseMove)
+    card.addEventListener("mouseenter", handleMouseEnter)
+    card.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
-      element.removeEventListener("mousemove", handleMouseMove)
-      element.removeEventListener("mouseenter", handleMouseEnter)
-      element.removeEventListener("mouseleave", handleMouseLeave)
+      card.removeEventListener("mousemove", handleMouseMove)
+      card.removeEventListener("mouseenter", handleMouseEnter)
+      card.removeEventListener("mouseleave", handleMouseLeave)
     }
-  }, [])
+  }, [disabled])
+
+  const glowStyle =
+    isHovered && !disabled
+      ? {
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(${glowColors[glowColor]}, ${intensity}) 0%, transparent 50%)`,
+        }
+      : {}
 
   return (
-    <div
-      ref={ref}
-      className={`relative ${className}`}
-      style={{
-        background: isHovered
-          ? `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, ${glowColors[glowColor]}, transparent 40%)`
-          : "transparent",
-      }}
-    >
+    <div ref={cardRef} className={`relative ${className}`}>
+      {!disabled && (
+        <div
+          className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-inherit"
+          style={glowStyle}
+        />
+      )}
       {children}
     </div>
   )

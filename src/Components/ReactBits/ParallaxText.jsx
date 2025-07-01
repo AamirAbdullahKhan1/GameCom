@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const ParallaxText = ({ children, speed = 0.5 }) => {
-  const ref = useRef()
+const ParallaxText = ({ children, speed = 0.5, className = "" }) => {
+  const elementRef = useRef(null)
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect()
+      if (elementRef.current) {
+        const rect = elementRef.current.getBoundingClientRect()
         const scrolled = window.pageYOffset
-        const rate = scrolled * -speed
+        const rate = scrolled * speed
         setOffset(rate)
       }
     }
@@ -22,11 +22,11 @@ const ParallaxText = ({ children, speed = 0.5 }) => {
 
   return (
     <div
-      ref={ref}
+      ref={elementRef}
+      className={className}
       style={{
         transform: `translateY(${offset}px)`,
       }}
-      className="transition-transform duration-75"
     >
       {children}
     </div>

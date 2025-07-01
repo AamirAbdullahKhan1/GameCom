@@ -30,19 +30,18 @@ import {
   MapPin,
 } from "lucide-react"
 
-import Navigation from "../Components/Navigation"
+import Navigation from "../components/Navigation"
 import AnimatedBackground from "../components/AnimatedBackground"
 import TestimonialCarousel from "../components/TestimonialCarousel"
 import TeamSection from "../components/TeamSection"
 
 // React Bits Components
-import CountUpAnimation from "../Components/ReactBits/CountUpAnimation"
-import TiltCard from "../Components/ReactBits/TiltCard"
-import AnimatedButton from "../Components/ReactBits/AnimatedButton"
-import DecryptedText from "../Components/ReactBits/DecryptedText"
-import GlowingCard from "../Components/ReactBits/GlowingCard"
-import FloatingElements from "../Components/ReactBits/FloatingElements"
-import ParallaxText from "../Components/ReactBits/ParallaxText"
+import CountUpAnimation from "../components/ReactBits/CountUpAnimation"
+import TiltCard from "../components/ReactBits/TiltCard"
+import AnimatedButton from "../components/ReactBits/AnimatedButton"
+import DecryptedText from "../components/ReactBits/DecryptedText"
+import GlowingCard from "../components/ReactBits/GlowingCard"
+import FloatingElements from "../components/ReactBits/FloatingElements"
 
 const LandingPage = () => {
   const [currentProjectSlide, setCurrentProjectSlide] = useState(0)
@@ -56,7 +55,8 @@ const LandingPage = () => {
       color: "from-blue-500 to-cyan-500",
       projects: ["Web Applications", "Mobile Apps", "AI Solutions", "Cloud Systems"],
       members: 15,
-      image: "/placeholder.svg?height=200&width=300",
+      image:
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "blue",
     },
     {
@@ -67,7 +67,8 @@ const LandingPage = () => {
       color: "from-purple-500 to-pink-500",
       projects: ["Event Coverage", "Promotional Videos", "Motion Graphics", "Photography"],
       members: 8,
-      image: "/placeholder.svg?height=200&width=300",
+      image:
+        "https://images.unsplash.com/photo-1543242594-c8bae8b9e708?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "purple",
     },
     {
@@ -78,7 +79,8 @@ const LandingPage = () => {
       color: "from-green-500 to-teal-500",
       projects: ["UI/UX Design", "Brand Identity", "Digital Art", "Prototypes"],
       members: 10,
-      image: "/placeholder.svg?height=200&width=300",
+      image:
+        "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "green",
     },
     {
@@ -89,7 +91,8 @@ const LandingPage = () => {
       color: "from-orange-500 to-red-500",
       projects: ["Mobile Games", "PC Games", "VR Experiences", "Game Engines"],
       members: 7,
-      image: "/placeholder.svg?height=200&width=300",
+      image:
+        "https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "red",
     },
     {
@@ -100,7 +103,8 @@ const LandingPage = () => {
       color: "from-indigo-500 to-purple-500",
       projects: ["Industry Events", "Partnerships", "Social Media", "Networking"],
       members: 5,
-      image: "/placeholder.svg?height=200&width=300",
+      image:
+        "https://images.unsplash.com/photo-1709715357549-f2d587846ee1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "purple",
     },
   ]
@@ -240,6 +244,17 @@ const LandingPage = () => {
     { number: 25, label: "Events This Year", icon: Calendar, suffix: "+" },
   ]
 
+  const handleProjectNavigation = (direction, event) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    if (direction === "prev") {
+      setCurrentProjectSlide((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length)
+    } else {
+      setCurrentProjectSlide((prev) => (prev + 1) % featuredProjects.length)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
       <AnimatedBackground />
@@ -250,56 +265,38 @@ const LandingPage = () => {
       <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-6xl mx-auto">
           <div className="mb-8">
-            <TiltCard className="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-6">
+            <TiltCard className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 mx-auto mb-6">
               <div className="w-full h-full flex items-center justify-center group">
                 <img
                   src="/gamecom-logo.png"
                   alt="GameCom Logo"
-                  className="w-24 h-24 sm:w-32 sm:h-32 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
+                  className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
             </TiltCard>
           </div>
 
-          {/* Enhanced Decrypted Title Animation */}
+          {/* Enhanced Decrypted Title Animation - Faster */}
           <div className="relative mb-6">
             <DecryptedText
-              text="GAMECOM"
+              text="GameCom"
               className="text-5xl sm:text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-              delay={500}
-              duration={3000}
-              scrambleSpeed={30}
-            />
-
-            {/* Glowing background effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent opacity-20 blur-sm">
-              <DecryptedText
-                text="GAMECOM"
-                className="text-5xl sm:text-6xl md:text-8xl font-bold"
-                delay={800}
-                duration={3000}
-                scrambleSpeed={30}
-              />
-            </div>
-          </div>
-
-          <ParallaxText speed={0.2}>
-            <div className="text-xl sm:text-2xl md:text-3xl mb-4 text-gray-300">
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-                SRM's Premier
-              </span>{" "}
-              Game Development Club
-            </div>
-          </ParallaxText>
-
-          <div className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed max-w-4xl mx-auto px-4">
-            <DecryptedText
-              text="Where Innovation Meets Gaming Excellence • Building Tomorrow's Tech Leaders"
-              delay={4000}
-              duration={2000}
+              delay={300}
+              duration={1200}
               scrambleSpeed={40}
             />
           </div>
+
+          <div className="text-xl sm:text-2xl md:text-3xl mb-4 text-gray-300">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
+              SRM's Premier
+            </span>{" "}
+            Game Development Club
+          </div>
+
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed max-w-4xl mx-auto px-4">
+            Where Innovation Meets Gaming Excellence • Building Tomorrow's Tech Leaders
+          </p>
 
           <p className="text-base sm:text-lg mb-12 text-gray-400 max-w-3xl mx-auto leading-relaxed px-4">
             Join India's most dynamic student-led technology community. Master cutting-edge skills, build incredible
@@ -325,7 +322,7 @@ const LandingPage = () => {
           {/* Enhanced Stats with Count Up Animation */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
             {stats.map((stat, index) => (
-              <TiltCard key={index} className="text-center group">
+              <TiltCard key={index} className="text-center group cursor-pointer">
                 <GlowingCard
                   glowColor="blue"
                   className="p-4 rounded-2xl bg-gray-800/30 backdrop-blur-sm border border-gray-700"
@@ -343,32 +340,37 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-gray-400 text-sm">Explore More</span>
-            <ChevronDown className="w-8 h-8 text-gray-400" />
-          </div>
-        </div>
       </section>
 
-      {/* Enhanced Featured Projects Gallery */}
+      {/* Enhanced Featured Projects Gallery - Fixed Navigation */}
       <section id="projects" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <DecryptedText
-              text="FEATURED PROJECTS"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              delay={200}
-              duration={2000}
-            />
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Featured Projects
+            </h2>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
               Discover the incredible projects our talented members have built, from award-winning games to innovative
               applications
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative group">
+            {/* Navigation Buttons - Better positioned */}
+            <button
+              onClick={(e) => handleProjectNavigation("prev", e)}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/90 hover:bg-gray-700/90 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 border border-gray-600"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+
+            <button
+              onClick={(e) => handleProjectNavigation("next", e)}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/90 hover:bg-gray-700/90 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 border border-gray-600"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+
             <div className="overflow-hidden rounded-2xl">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
@@ -376,11 +378,8 @@ const LandingPage = () => {
               >
                 {featuredProjects.map((project, index) => (
                   <div key={index} className="w-full flex-shrink-0">
-                    <TiltCard className="mx-2 sm:mx-4">
-                      <GlowingCard
-                        glowColor="blue"
-                        className="bg-gray-800/50 rounded-2xl border border-gray-700 overflow-hidden"
-                      >
+                    <div className="mx-2 sm:mx-4">
+                      <div className="bg-gray-800/50 rounded-2xl border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300">
                         <div className="relative">
                           <img
                             src={project.image || "/placeholder.svg"}
@@ -426,33 +425,12 @@ const LandingPage = () => {
                             </AnimatedButton>
                           </div>
                         </div>
-                      </GlowingCard>
-                    </TiltCard>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Project Navigation */}
-            <AnimatedButton
-              variant="ghost"
-              size="sm"
-              onClick={() =>
-                setCurrentProjectSlide((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length)
-              }
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700 p-2 sm:p-3 rounded-full"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </AnimatedButton>
-
-            <AnimatedButton
-              variant="ghost"
-              size="sm"
-              onClick={() => setCurrentProjectSlide((prev) => (prev + 1) % featuredProjects.length)}
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700 p-2 sm:p-3 rounded-full"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </AnimatedButton>
 
             {/* Project Indicators */}
             <div className="flex justify-center mt-6 sm:mt-8 gap-2">
@@ -460,8 +438,8 @@ const LandingPage = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentProjectSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentProjectSlide ? "bg-blue-400" : "bg-gray-600"
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentProjectSlide ? "bg-blue-400 scale-125" : "bg-gray-600 hover:bg-gray-500"
                   }`}
                 />
               ))}
@@ -470,16 +448,13 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Enhanced Domains Section with Tilt Cards */}
+      {/* Domains Section with Tilt Cards */}
       <section id="domains" className="relative z-10 py-12 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <DecryptedText
-              text="OUR DOMAINS"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              delay={200}
-              duration={2000}
-            />
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Our Domains
+            </h2>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
               Explore diverse pathways to excellence across technology, creativity, and innovation. Each domain offers
               specialized training and real-world project experience.
@@ -544,68 +519,13 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Enhanced Event Gallery */}
-      <section id="gallery" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <DecryptedText
-              text="EVENT GALLERY"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              delay={200}
-              duration={2000}
-            />
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-              Relive the excitement of our amazing events, workshops, and achievements throughout the year
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {eventGallery.map((event, index) => (
-              <TiltCard key={index}>
-                <GlowingCard
-                  glowColor="purple"
-                  className="bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700 hover:border-gray-600 transition-all duration-300 group h-full"
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={event.image || "/placeholder.svg"}
-                      alt={event.title}
-                      className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm">
-                        {event.date}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">
-                      {event.title}
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm">{event.description}</p>
-                  </div>
-                </GlowingCard>
-              </TiltCard>
-            ))}
-          </div>
-
-          <div className="text-center mt-8 sm:mt-12">
-            <AnimatedButton size="lg">View All Events</AnimatedButton>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Achievements Section */}
+      {/* Achievements Section */}
       <section className="relative z-10 py-12 sm:py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <DecryptedText
-              text="OUR ACHIEVEMENTS"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              delay={200}
-              duration={2000}
-            />
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Our Achievements
+            </h2>
             <p className="text-lg sm:text-xl text-gray-400 px-4">
               Celebrating excellence and innovation in everything we do
             </p>
@@ -634,12 +554,9 @@ const LandingPage = () => {
       <section className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <DecryptedText
-              text="WHAT OUR MEMBERS SAY"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-              delay={200}
-              duration={2000}
-            />
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              What Our Members Say
+            </h2>
             <p className="text-lg sm:text-xl text-gray-400 px-4">
               Hear from our amazing community of current members and successful alumni
             </p>
@@ -652,15 +569,12 @@ const LandingPage = () => {
       {/* Team Section */}
       <TeamSection />
 
-      {/* Enhanced Call to Action */}
+      {/* Call to Action */}
       <section className="relative z-10 py-12 sm:py-20 px-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
-          <DecryptedText
-            text="READY TO JOIN US?"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-            delay={200}
-            duration={2000}
-          />
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Ready to Join Us?
+          </h2>
           <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed px-4">
             Take the first step towards an incredible journey of learning, building, and growing with like-minded
             innovators.
@@ -683,7 +597,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Enhanced Footer */}
+      {/* Footer */}
       <footer className="relative z-10 bg-gray-900 border-t border-gray-800 py-12 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
@@ -728,9 +642,6 @@ const LandingPage = () => {
                 </a>
                 <a href="#projects" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Projects
-                </a>
-                <a href="#gallery" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
-                  Gallery
                 </a>
                 <a href="#team" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Team

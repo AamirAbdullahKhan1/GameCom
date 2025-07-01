@@ -1,92 +1,88 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 
 const DecryptedText = ({
   text,
   className = "",
   delay = 0,
-  duration = 2000,
+  duration = 1500,
   scrambleSpeed = 50,
   characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?",
 }) => {
   const [displayText, setDisplayText] = useState("")
+  const [isAnimating, setIsAnimating] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const [isDecrypting, setIsDecrypting] = useState(false)
-  const [hasStarted, setHasStarted] = useState(false)
-  const ref = useRef()
-  const intervalRef = useRef()
+  const textRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true)
-          setTimeout(() => {
-            setIsVisible(true)
-            startDecryption()
-          }, delay)
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true)
         }
       },
       { threshold: 0.1 },
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    if (textRef.current) {
+      observer.observe(textRef.current)
     }
 
-    return () => {
-      observer.disconnect()
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [delay, hasStarted])
+    return () => observer.disconnect()
+  }, [isVisible])
 
-  const getRandomChar = () => {
-    return characters[Math.floor(Math.random() * characters.length)]
-  }
+  useEffect(() => {
+    if (!isVisible || isAnimating) return
 
-  const startDecryption = () => {
-    if (isDecrypting) return
+    const startAnimation = () => {
+      setIsAnimating(true)
+      const targetText = text.toUpperCase()
+      let currentText = Array(targetText.length)
+        .fill("")
+        .map(() => characters[Math.floor(Math.random() * characters.length)])
 
-    setIsDecrypting(true)
-    let currentIndex = 0
-    const targetText = text
-    const scrambleArray = new Array(targetText.length)
-      .fill("")
-      .map((_, i) => (targetText[i] === " " ? " " : getRandomChar()))
+      setDisplayText(currentText.join(""))
 
-    setDisplayText(scrambleArray.join(""))
+      const totalSteps = Math.floor(duration / scrambleSpeed)
+      const revealStep = Math.floor(totalSteps / targetText.length)
 
-    intervalRef.current = setInterval(() => {
-      if (currentIndex < targetText.length) {
-        // Set the current character to the correct one
-        scrambleArray[currentIndex] = targetText[currentIndex]
-        currentIndex++
+      let step = 0
 
-        // Continue scrambling remaining characters
-        for (let i = currentIndex; i < targetText.length; i++) {
-          if (targetText[i] !== " ") {
-            scrambleArray[i] = getRandomChar()
+      const interval = setInterval(() => {
+        const revealedChars = Math.floor(step / revealStep)
+
+        currentText = currentText.map((char, index) => {
+          if (index < revealedChars) {
+            return targetText[index]
+          } else if (index === revealedChars && step % 2 === 0) {
+            return targetText[index]
+          } else {
+            return characters[Math.floor(Math.random() * characters.length)]
           }
-        }
+        })
 
-        setDisplayText(scrambleArray.join(""))
-      } else {
-        clearInterval(intervalRef.current)
-        setIsDecrypting(false)
-        setDisplayText(targetText) // Ensure final text is correct
-      }
-    }, duration / targetText.length)
-  }
+        setDisplayText(currentText.join(""))
+        step++
+
+        if (step >= totalSteps) {
+          setDisplayText(targetText)
+          clearInterval(interval)
+          setIsAnimating(false)
+        }
+      }, scrambleSpeed)
+
+      return () => clearInterval(interval)
+    }
+
+    const timer = setTimeout(startAnimation, delay)
+    return () => clearTimeout(timer)
+  }, [isVisible, text, delay, duration, scrambleSpeed, characters, isAnimating])
 
   return (
-    <div ref={ref} className={`font-mono ${className}`}>
-      <span className={`inline-block transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-        {displayText || text}
-      </span>
-    </div>
+    <span ref={textRef} className={`font-mono ${className}`}>
+      {displayText || text}
+    </span>
   )
 }
 
