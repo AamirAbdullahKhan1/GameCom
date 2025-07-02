@@ -1,103 +1,207 @@
 "use client"
 
+import { Renderer, Program, Mesh, Color, Triangle } from "ogl"
 import { useEffect, useRef } from "react"
 
-const Aurora = ({ className = "", intensity = 0.5, speed = 1 }) => {
-  const canvasRef = useRef(null)
-  const animationRef = useRef(null)
+const VERT = `#version 300 es
+
+in vec2 position;
+
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`
+
+const FRAG = `#version 300 es
+
+precision highp float;
+
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec3 uColorStops[3];
+uniform vec2 uResolution;
+uniform float uBlend;
+
+out vec4 fragColor;
+
+vec3 permute(vec3 x) {
+  return mod(((x * 34.0) + 1.0) * x, 289.0);
+}
+
+float snoise(vec2 v){
+  const vec4 C = vec4(
+      0.211324865405187, 0.366025403784439,
+      -0.577350269189626, 0.024390243902439
+  );
+  vec2 i  = floor(v + dot(v, C.yy));
+  vec2 x0 = v - i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute(
+      permute(i.y + vec3(0.0, i1.y, 1.0))
+    + i.x + vec3(0.0, i1.x, 1.0)
+  );
+  vec3 m = max(
+      0.5 - vec3(
+          dot(x0, x0),
+          dot(x12.xy, x12.xy),
+          dot(x12.zw, x12.zw)
+      ), 
+      0.0
+  );
+  m = m * m;
+  m = m * m;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+struct ColorStop {
+  vec3 color;
+  float position;
+};
+
+#define COLOR_RAMP(colors, factor, finalColor) {              \
+  int index = 0;                                            \
+  for (int i = 0; i < 2; i++) {                               \
+     ColorStop currentColor = colors[i];                    \
+     bool isInBetween = currentColor.position <= factor;    \
+     index = int(mix(float(index), float(i), float(isInBetween))); \
+  }                                                         \
+  ColorStop currentColor = colors[index];                   \
+  ColorStop nextColor = colors[index + 1];                  \
+  float range = nextColor.position - currentColor.position; \
+  float lerpFactor = (factor - currentColor.position) / range; \
+  finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / uResolution;
+  
+  ColorStop colors[3];
+  colors[0] = ColorStop(uColorStops[0], 0.0);
+  colors[1] = ColorStop(uColorStops[1], 0.5);
+  colors[2] = ColorStop(uColorStops[2], 1.0);
+  
+  vec3 rampColor;
+  COLOR_RAMP(colors, uv.x, rampColor);
+  
+  float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+  height = exp(height);
+  height = (uv.y * 2.0 - height + 0.2);
+  float intensity = 0.6 * height;
+  
+  float midPoint = 0.20;
+  float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+  
+  vec3 auroraColor = intensity * rampColor;
+  
+  fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+}
+`
+
+export default function Aurora(props) {
+  const { colorStops = ["#4F46E5", "#7C3AED", "#EC4899"], amplitude = 1.0, blend = 0.5, speed = 0.5 } = props
+
+  const propsRef = useRef(props)
+  propsRef.current = props
+  const ctnDom = useRef(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const ctn = ctnDom.current
+    if (!ctn) return
 
-    const ctx = canvas.getContext("2d")
-    let time = 0
+    const renderer = new Renderer({
+      alpha: true,
+      premultipliedAlpha: true,
+      antialias: true,
+    })
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+    const gl = renderer.gl
+    gl.clearColor(0, 0, 0, 0)
+    gl.enable(gl.BLEND)
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
+    gl.canvas.style.backgroundColor = "transparent"
 
-    const animate = () => {
-      time += 0.01 * speed
+    let program
 
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Create gradient
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
-
-      // Aurora colors with animation
-      const hue1 = (time * 50) % 360
-      const hue2 = (time * 30 + 120) % 360
-      const hue3 = (time * 40 + 240) % 360
-
-      gradient.addColorStop(0, `hsla(${hue1}, 70%, 60%, ${0.1 * intensity})`)
-      gradient.addColorStop(0.3, `hsla(${hue2}, 80%, 70%, ${0.15 * intensity})`)
-      gradient.addColorStop(0.6, `hsla(${hue3}, 75%, 65%, ${0.12 * intensity})`)
-      gradient.addColorStop(1, `hsla(${hue1 + 60}, 65%, 55%, ${0.08 * intensity})`)
-
-      // Draw aurora waves
-      ctx.fillStyle = gradient
-      ctx.beginPath()
-
-      for (let x = 0; x <= canvas.width; x += 10) {
-        const y1 = Math.sin(x * 0.01 + time) * 100 + canvas.height * 0.3
-        const y2 = Math.cos(x * 0.008 + time * 1.2) * 80 + canvas.height * 0.5
-        const y3 = Math.sin(x * 0.012 + time * 0.8) * 60 + canvas.height * 0.7
-
-        if (x === 0) {
-          ctx.moveTo(x, y1)
-        } else {
-          ctx.lineTo(x, y1)
-        }
+    function resize() {
+      if (!ctn) return
+      const width = ctn.offsetWidth
+      const height = ctn.offsetHeight
+      renderer.setSize(width, height)
+      if (program) {
+        program.uniforms.uResolution.value = [width, height]
       }
-
-      ctx.lineTo(canvas.width, canvas.height)
-      ctx.lineTo(0, canvas.height)
-      ctx.closePath()
-      ctx.fill()
-
-      // Second layer
-      const gradient2 = ctx.createRadialGradient(
-        canvas.width * 0.3,
-        canvas.height * 0.2,
-        0,
-        canvas.width * 0.7,
-        canvas.height * 0.8,
-        canvas.width,
-      )
-
-      gradient2.addColorStop(0, `hsla(${hue2 + 30}, 80%, 70%, ${0.08 * intensity})`)
-      gradient2.addColorStop(0.5, `hsla(${hue3 + 60}, 70%, 60%, ${0.05 * intensity})`)
-      gradient2.addColorStop(1, `hsla(${hue1 + 90}, 60%, 50%, ${0.02 * intensity})`)
-
-      ctx.fillStyle = gradient2
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      animationRef.current = requestAnimationFrame(animate)
     }
-
-    resize()
-    animate()
 
     window.addEventListener("resize", resize)
 
-    return () => {
-      window.removeEventListener("resize", resize)
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
+    const geometry = new Triangle(gl)
+    if (geometry.attributes.uv) {
+      delete geometry.attributes.uv
     }
-  }, [intensity, speed])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none z-0 ${className}`}
-      style={{ mixBlendMode: "screen" }}
-    />
-  )
+    const colorStopsArray = colorStops.map((hex) => {
+      const c = new Color(hex)
+      return [c.r, c.g, c.b]
+    })
+
+    program = new Program(gl, {
+      vertex: VERT,
+      fragment: FRAG,
+      uniforms: {
+        uTime: { value: 0 },
+        uAmplitude: { value: amplitude },
+        uColorStops: { value: colorStopsArray },
+        uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
+        uBlend: { value: blend },
+      },
+    })
+
+    const mesh = new Mesh(gl, { geometry, program })
+
+    ctn.appendChild(gl.canvas)
+
+    let animateId = 0
+
+    const update = (t) => {
+      animateId = requestAnimationFrame(update)
+      const { time = t * 0.01, speed: currentSpeed = speed } = propsRef.current
+
+      program.uniforms.uTime.value = time * currentSpeed * 0.1
+      program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? amplitude
+      program.uniforms.uBlend.value = propsRef.current.blend ?? blend
+
+      const stops = propsRef.current.colorStops ?? colorStops
+      program.uniforms.uColorStops.value = stops.map((hex) => {
+        const c = new Color(hex)
+        return [c.r, c.g, c.b]
+      })
+
+      renderer.render({ scene: mesh })
+    }
+
+    animateId = requestAnimationFrame(update)
+    resize()
+
+    return () => {
+      cancelAnimationFrame(animateId)
+      window.removeEventListener("resize", resize)
+      if (ctn && gl.canvas.parentNode === ctn) {
+        ctn.removeChild(gl.canvas)
+      }
+      gl.getExtension("WEBGL_lose_context")?.loseContext()
+    }
+  }, [amplitude, blend, speed, colorStops])
+
+  return <div ref={ctnDom} className="w-full h-full fixed inset-0 pointer-events-none" style={{ zIndex: -1 }} />
 }
-
-export default Aurora

@@ -14,18 +14,22 @@ function App() {
   return (
     <Router>
       <div className="relative min-h-screen">
-        <Aurora intensity={0.3} speed={0.8}/>
-        <Routes>
-          <Route path="/" element= {<LandingPage/>} />
-          <Route path="/login" element= {<LoginPage/>} />
-          <Route path="/register" element= {<RegisterPage/>} />
-          <Route path="/domains" element= {<DomainsPage/>}/>
-          <Route path="/dashboard/member" element={<MemberDashboard />} />
-          <Route path="/dashboard/domain-lead" element={<DomainLeadDashboard />} />
-          <Route path="/dashboard/president" element={<PresidentDashboard />} />
-          <Route path="/dashboard/admin" element={<AdminDashboard />} />
-          <Route path="/register-event" element={<EventRegistrationPage/>} />
-        </Routes>
+        <div className="fixed inset-0 z-0">
+          <Aurora colorStops={["#4F46E5", "#7C3AED", "#EC4899"]} blend={0.4} amplitude={0.8} speed={0.6}/>
+        </div>
+        <div className="relative z-10">
+          <Routes>
+            <Route path="/" element= {<LandingPage/>} />
+            <Route path="/login" element= {<LoginPage/>} />
+            <Route path="/register" element= {<RegisterPage/>} />
+            <Route path="/domains" element= {<DomainsPage/>}/>
+            <Route path="/dashboard/member" element={<MemberDashboard />} />
+            <Route path="/dashboard/domain-lead" element={<DomainLeadDashboard />} />
+            <Route path="/dashboard/president" element={<PresidentDashboard />} />
+            <Route path="/dashboard/admin" element={<AdminDashboard />} />
+            <Route path="/register-event" element={<EventRegistrationPage/>} />
+          </Routes>
+        </div>
       </div>
     </Router>
   )

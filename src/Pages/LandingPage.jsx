@@ -283,7 +283,7 @@ const LandingPage = () => {
               className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-wider bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
               delay={500}
               duration={1200}
-              repeatInterval = {20000}
+              repeatInterval = {15000}
               scrambleSpeed={40}
             />
           </div>
