@@ -7,16 +7,12 @@ import EventRegistrationPage from "./Pages/EventRegistrationPage"
 import LandingPage from "./Pages/LandingPage"
 import LoginPage from "./Pages/LoginPage"
 import RegisterPage from "./Pages/RegisterPage"
-import Aurora from "./Components/ReactBits/Aurora"
 import DomainsPage from "./Pages/DomainsPage"
 
 function App() {
   return (
-    <Router>
+    <Router> 
       <div className="relative min-h-screen">
-        <div className="fixed inset-0 z-0">
-          <Aurora colorStops={["#4F46E5", "#7C3AED", "#EC4899"]} blend={0.4} amplitude={0.8} speed={0.6}/>
-        </div>
         <div className="relative z-10">
           <Routes>
             <Route path="/" element= {<LandingPage/>} />

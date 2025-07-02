@@ -372,7 +372,7 @@ const LandingPage = () => {
               <ChevronRight className="w-6 h-6 text-white" />
             </button>
 
-            <div className="overflow-hidden rounded-2xl">
+            <div className="overflow-hidden rounded-2xl cursor-pointer">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentProjectSlide * 100}%)` }}
@@ -420,10 +420,7 @@ const LandingPage = () => {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-gray-500 text-sm">by {project.team}</span>
-                            <AnimatedButton variant="ghost" size="sm">
-                              <ExternalLink className="w-4 h-4" />
-                              View Project
-                            </AnimatedButton>
+                            
                           </div>
                         </div>
                       </div>
