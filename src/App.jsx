@@ -7,20 +7,26 @@ import EventRegistrationPage from "./Pages/EventRegistrationPage"
 import LandingPage from "./Pages/LandingPage"
 import LoginPage from "./Pages/LoginPage"
 import RegisterPage from "./Pages/RegisterPage"
+import Aurora from "./Components/ReactBits/Aurora"
+import DomainsPage from "./Pages/DomainsPage"
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element= {<LandingPage/>} />
-        <Route path="/login" element= {<LoginPage/>} />
-        <Route path="/register" element= {<RegisterPage/>} />
-        <Route path="/dashboard/member" element={<MemberDashboard />} />
-        <Route path="/dashboard/domain-lead" element={<DomainLeadDashboard />} />
-        <Route path="/dashboard/president" element={<PresidentDashboard />} />
-        <Route path="/dashboard/admin" element={<AdminDashboard />} />
-        <Route path="/register-event" element={<EventRegistrationPage/>} />
-      </Routes>
+      <div className="relative min-h-screen">
+        <Aurora intensity={0.3} speed={0.8}/>
+        <Routes>
+          <Route path="/" element= {<LandingPage/>} />
+          <Route path="/login" element= {<LoginPage/>} />
+          <Route path="/register" element= {<RegisterPage/>} />
+          <Route path="/domains" element= {<DomainsPage/>}/>
+          <Route path="/dashboard/member" element={<MemberDashboard />} />
+          <Route path="/dashboard/domain-lead" element={<DomainLeadDashboard />} />
+          <Route path="/dashboard/president" element={<PresidentDashboard />} />
+          <Route path="/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/register-event" element={<EventRegistrationPage/>} />
+        </Routes>
+      </div>
     </Router>
   )
 }

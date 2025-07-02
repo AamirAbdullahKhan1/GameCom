@@ -16,7 +16,7 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="relative z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800 sticky top-0">
+    <nav className="relative z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800 top-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center space-x-3">
@@ -45,7 +45,7 @@ const Navigation = () => {
               >
                 <span className="relative z-10">{item.label}</span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+                
               </a>
             ))}
             <Link

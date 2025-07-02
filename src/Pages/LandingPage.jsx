@@ -30,7 +30,7 @@ import {
   MapPin,
 } from "lucide-react"
 
-import Navigation from "../components/Navigation"
+import Navigation from "../Components/Navigation"
 import AnimatedBackground from "../components/AnimatedBackground"
 import TestimonialCarousel from "../components/TestimonialCarousel"
 import TeamSection from "../components/TeamSection"
@@ -231,17 +231,17 @@ const LandingPage = () => {
   ]
 
   const achievements = [
-    { icon: Trophy, title: "50+ Hackathon Wins", description: "National and international recognition" },
-    { icon: Star, title: "500+ Alumni Network", description: "Working in top tech companies globally" },
-    { icon: Award, title: "Best Club Award", description: "SRM's most innovative student organization" },
-    { icon: Target, title: "100+ Projects", description: "Real-world applications and games published" },
+    { icon: Trophy, title: "5+ Hackathon Wins", description: "National and international recognition" },
+    { icon: Star, title: "50+ Alumni Network", description: "Working in top tech companies globally" },
+    { icon: Award, title: "Game Club Award", description: "SRM's interactive gaming and tech club" },
+    { icon: Target, title: "40+ Projects", description: "Real-world applications and games published" },
   ]
 
   const stats = [
-    { number: 500, label: "Active Members", icon: Users, suffix: "+" },
-    { number: 100, label: "Projects Completed", icon: Code, suffix: "+" },
-    { number: 50, label: "Industry Partners", icon: Zap, suffix: "+" },
-    { number: 25, label: "Events This Year", icon: Calendar, suffix: "+" },
+    { number: 40, label: "Active Members", icon: Users, suffix: "+" },
+    { number: 40, label: "Projects Completed", icon: Code, suffix: "+" },
+    { number: 5, label: "Industry Partners", icon: Zap, suffix: "+" },
+    { number: 3, label: "Events This Year", icon: Calendar, suffix: "+" },
   ]
 
   const handleProjectNavigation = (direction, event) => {
@@ -265,12 +265,12 @@ const LandingPage = () => {
       <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-6xl mx-auto">
           <div className="mb-8">
-            <TiltCard className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 mx-auto mb-6">
+            <TiltCard className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 mx-auto mb-6 cursor-pointer">
               <div className="w-full h-full flex items-center justify-center group">
                 <img
                   src="/gamecom-logo.png"
                   alt="GameCom Logo"
-                  className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
+                  className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain cursor-pointer drop-shadow-2xl group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
             </TiltCard>
@@ -280,9 +280,10 @@ const LandingPage = () => {
           <div className="relative mb-6">
             <DecryptedText
               text="GameCom"
-              className="text-5xl sm:text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-              delay={300}
+              className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-wider bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+              delay={500}
               duration={1200}
+              repeatInterval = {20000}
               scrambleSpeed={40}
             />
           </div>
@@ -344,7 +345,7 @@ const LandingPage = () => {
 
       {/* Enhanced Featured Projects Gallery - Fixed Navigation */}
       <section id="projects" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Featured Projects
@@ -379,12 +380,12 @@ const LandingPage = () => {
                 {featuredProjects.map((project, index) => (
                   <div key={index} className="w-full flex-shrink-0">
                     <div className="mx-2 sm:mx-4">
-                      <div className="bg-gray-800/50 rounded-2xl border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300">
+                      <div className="bg-gray-800/50 rounded-2xl border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300 max-w-2xl mx-auto">
                         <div className="relative">
                           <img
                             src={project.image || "/placeholder.svg"}
                             alt={project.title}
-                            className="w-full h-48 sm:h-64 object-cover"
+                            className="w-full h-48 sm:h-56 object-cover"
                           />
                           <div className="absolute top-4 right-4">
                             <span
@@ -402,7 +403,7 @@ const LandingPage = () => {
                             </span>
                           </div>
                         </div>
-                        <div className="p-4 sm:p-8">
+                        <div className="p-6">
                           <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white">{project.title}</h3>
                           <p className="text-gray-400 mb-4 leading-relaxed text-sm sm:text-base">
                             {project.description}
@@ -506,11 +507,12 @@ const LandingPage = () => {
                         ))}
                       </div>
                     </div>
-
-                    <AnimatedButton variant="secondary" className="w-full">
-                      Learn More
-                      <ArrowRight className="w-4 h-4" />
-                    </AnimatedButton>
+                    <Link to={"/domains"}>
+                      <AnimatedButton variant="secondary" className="w-full">
+                        Learn More
+                        <ArrowRight className="w-4 h-4" />
+                      </AnimatedButton>
+                    </Link>
                   </div>
                 </GlowingCard>
               </TiltCard>
