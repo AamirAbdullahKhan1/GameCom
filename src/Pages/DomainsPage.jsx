@@ -42,9 +42,9 @@ const DomainsPage = () => {
       glowColor: "blue",
       image:
         "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      members: 15,
-      projects: 25,
-      events: 8,
+      members: 14,
+      projects: 5,
+      events: 2,
       skills: [
         "Full-Stack Web Development",
         "Mobile App Development",
@@ -82,15 +82,12 @@ const DomainsPage = () => {
         "Technical Lead",
       ],
       achievements: [
-        "Winner of 15+ National Hackathons",
-        "Published 3 Research Papers",
-        "Deployed 20+ Production Applications",
-        "Mentored 100+ Junior Developers",
+        "SIH'23 Runner Ups",
+        "Published 2 Research Papers",
+        "Deployed 16+ Production Applications",
       ],
       upcomingEvents: [
-        { name: "React Workshop", date: "Jan 15", type: "Workshop" },
-        { name: "AI/ML Bootcamp", date: "Jan 22", type: "Bootcamp" },
-        { name: "Tech Talk: Cloud Computing", date: "Feb 5", type: "Seminar" },
+        { name: "Coming Soon", date: "Tentative", type: "Workshop" },
       ],
     },
     {
@@ -103,8 +100,8 @@ const DomainsPage = () => {
       image:
         "https://images.unsplash.com/photo-1543242594-c8bae8b9e708?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       members: 8,
-      projects: 18,
-      events: 6,
+      projects: 10,
+      events: 0,
       skills: [
         "Professional Videography",
         "Photography & Photo Editing",
@@ -139,15 +136,11 @@ const DomainsPage = () => {
         "Creative Director",
       ],
       achievements: [
-        "Produced 50+ Event Coverage Videos",
-        "Created Content for 10+ Brands",
-        "Won 5 Film Festival Awards",
-        "Generated 1M+ Views on Social Media",
+        "Created Content for 3+ Brands",
       ],
       upcomingEvents: [
-        { name: "Photography Masterclass", date: "Jan 18", type: "Workshop" },
-        { name: "Video Editing Bootcamp", date: "Jan 25", type: "Bootcamp" },
-        { name: "Content Creation Summit", date: "Feb 8", type: "Conference" },
+        { name: "Coming Soon", date: "Tentative", type: "Workshop" },
+        
       ],
     },
     {
@@ -159,9 +152,9 @@ const DomainsPage = () => {
       glowColor: "green",
       image:
         "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      members: 10,
-      projects: 22,
-      events: 7,
+      members: 5,
+      projects: 20,
+      events: 0,
       skills: [
         "UI/UX Design",
         "Graphic Design",
@@ -195,15 +188,11 @@ const DomainsPage = () => {
         "Design Researcher",
       ],
       achievements: [
-        "Designed 30+ Mobile Applications",
-        "Created Brand Identity for 15+ Startups",
-        "Won 8 Design Competitions",
-        "Mentored 50+ Design Students",
+        "Designed 2 Mobile Applications",
+        "Created Brand Identity for 2 Startups",
       ],
       upcomingEvents: [
-        { name: "UI/UX Design Workshop", date: "Jan 20", type: "Workshop" },
-        { name: "Design Thinking Session", date: "Jan 27", type: "Workshop" },
-        { name: "Portfolio Review", date: "Feb 10", type: "Mentorship" },
+        { name: "Coming Soon", date: "Tentative", type: "Mentorship" },
       ],
     },
     {
@@ -215,9 +204,9 @@ const DomainsPage = () => {
       glowColor: "red",
       image:
         "https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      members: 7,
-      projects: 12,
-      events: 5,
+      members: 8,
+      projects: 5,
+      events: 2,
       skills: [
         "Game Programming",
         "3D Modeling & Animation",
@@ -252,15 +241,12 @@ const DomainsPage = () => {
         "Technical Artist",
       ],
       achievements: [
-        "Published 8 Games on App Stores",
-        "Won 3 Game Jam Competitions",
+        "Published 2 Games on App Stores",
+        "Won 2 Game Jam Competitions",
         "Developed VR Experience for Education",
-        "Created Indie Game with 10K+ Downloads",
       ],
       upcomingEvents: [
-        { name: "Unity Game Development", date: "Jan 23", type: "Workshop" },
-        { name: "Game Jam Weekend", date: "Feb 1-3", type: "Competition" },
-        { name: "VR Development Seminar", date: "Feb 12", type: "Seminar" },
+        { name: "Coming Soon", date: "Tentative", type: "Seminar" },
       ],
     },
     {
@@ -272,9 +258,9 @@ const DomainsPage = () => {
       glowColor: "purple",
       image:
         "https://images.unsplash.com/photo-1709715357549-f2d587846ee1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      members: 5,
-      projects: 15,
-      events: 10,
+      members: 7,
+      projects: 3,
+      events: 1,
       skills: [
         "Event Management",
         "Partnership Development",
@@ -309,15 +295,11 @@ const DomainsPage = () => {
         "Partnership Manager",
       ],
       achievements: [
-        "Organized 25+ Successful Events",
-        "Built Network of 50+ Industry Partners",
-        "Grew Social Media Following by 300%",
-        "Secured Sponsorships Worth ₹5L+",
+        "Organized 5+ Successful Events",
+        "Built Network of 3+ Industry Partners",
       ],
       upcomingEvents: [
-        { name: "Networking Mixer", date: "Jan 19", type: "Networking" },
-        { name: "Industry Panel Discussion", date: "Jan 26", type: "Panel" },
-        { name: "PR Strategy Workshop", date: "Feb 9", type: "Workshop" },
+        { name: "Coming Soon", date: "Tentative", type: "Networking" },
       ],
     },
   ]
@@ -360,7 +342,7 @@ const DomainsPage = () => {
                   <Users className="w-8 h-8 text-blue-400" />
                 </div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
-                  <CountUpAnimation end={45} suffix="+" duration={2000} />
+                  <CountUpAnimation end={35} suffix="+" duration={2000} />
                 </div>
                 <div className="text-gray-400 text-sm">Active Members</div>
               </GlowingCard>
@@ -375,7 +357,7 @@ const DomainsPage = () => {
                   <Target className="w-8 h-8 text-green-400" />
                 </div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent mb-2">
-                  <CountUpAnimation end={92} suffix="+" duration={2000} />
+                  <CountUpAnimation end={12} suffix="+" duration={2000} />
                 </div>
                 <div className="text-gray-400 text-sm">Projects Completed</div>
               </GlowingCard>
@@ -390,7 +372,7 @@ const DomainsPage = () => {
                   <Calendar className="w-8 h-8 text-purple-400" />
                 </div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  <CountUpAnimation end={36} suffix="+" duration={2000} />
+                  <CountUpAnimation end={6} suffix="+" duration={2000} />
                 </div>
                 <div className="text-gray-400 text-sm">Events Organized</div>
               </GlowingCard>
@@ -405,7 +387,7 @@ const DomainsPage = () => {
                   <Trophy className="w-8 h-8 text-yellow-400" />
                 </div>
                 <div className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-2">
-                  <CountUpAnimation end={28} suffix="+" duration={2000} />
+                  <CountUpAnimation end={5} suffix="+" duration={2000} />
                 </div>
                 <div className="text-gray-400 text-sm">Awards Won</div>
               </GlowingCard>

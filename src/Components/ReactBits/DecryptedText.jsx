@@ -74,7 +74,7 @@ const DecryptedText = ({
       step++
 
       if (step >= totalSteps) {
-        setDisplayText(originalText) // Ensure we end with original text
+        setDisplayText(originalText) 
         clearInterval(animationInterval)
         setIsAnimating(false)
       }

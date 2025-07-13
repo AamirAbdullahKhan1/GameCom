@@ -32,14 +32,14 @@ import {
 
 import Navigation from "../Components/Navigation"
 import AnimatedBackground from "../components/AnimatedBackground"
-import TestimonialCarousel from "../components/TestimonialCarousel"
-import TeamSection from "../components/TeamSection"
+import TestimonialCarousel from "../Components/TestimonialCarousel"
+import TeamSection from "../Components/TeamSection"
 
 // React Bits Components
 import CountUpAnimation from "../components/ReactBits/CountUpAnimation"
 import TiltCard from "../components/ReactBits/TiltCard"
 import AnimatedButton from "../components/ReactBits/AnimatedButton"
-import DecryptedText from "../components/ReactBits/DecryptedText"
+import DecryptedText from "../Components/ReactBits/DecryptedText"
 import GlowingCard from "../components/ReactBits/GlowingCard"
 import FloatingElements from "../components/ReactBits/FloatingElements"
 
@@ -211,12 +211,12 @@ const LandingPage = () => {
       rating: 5,
     },
     {
-      name: "Rahul Kumar",
+      name: "Aamir Abdullah Khan",
       role: "Current President",
-      year: "4th Year CSE",
+      year: "3rd Year CSE-GT",
       content:
         "Leading GameCom has been the most rewarding experience. Seeing juniors grow, organizing events, and building lasting friendships - this club is truly special.",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://imgur.com/jQrK2Nf.jpg",
       rating: 5,
     },
     {
@@ -504,7 +504,7 @@ const LandingPage = () => {
                         ))}
                       </div>
                     </div>
-                    <Link to={"/domains"}>
+                    <Link to={"/domains"} onClick={() => window.scrollTo(0,0)}>
                       <AnimatedButton variant="secondary" className="w-full">
                         Learn More
                         <ArrowRight className="w-4 h-4" />
