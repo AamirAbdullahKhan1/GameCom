@@ -500,16 +500,6 @@ const LandingPage = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-4">
-                      <AnimatedButton>
-                        <ExternalLink className="w-5 h-5" />
-                        View Project
-                      </AnimatedButton>
-                      <AnimatedButton variant="secondary">
-                        <Github className="w-5 h-5" />
-                        Source Code
-                      </AnimatedButton>
-                    </div>
                   </div>
                 </div>
 
@@ -752,23 +742,23 @@ const LandingPage = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-gray-400">
                   <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm">contact@gamecom.srm.edu</span>
+                  <span className="text-sm">gamecomsrm25@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
                   <Phone className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm">+91 98765 43210</span>
+                  <span className="text-sm">+91 7397711345</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm">SRM Institute, Kattankulathur</span>
+                  <span className="text-sm">SRM Institute, Ramapuram</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-500 text-sm">© 2024 GameCom - SRM Institute. All rights reserved.</p>
-            <p className="text-gray-600 text-xs mt-2">Built with ❤️ by GameCom Technical Team</p>
+            <p className="text-gray-500 text-sm">© 2025 GameCom - SRM Institute. All rights reserved.</p>
+            <p className="text-gray-600 text-xs mt-2">Built with ❤️ by GameCom's President</p>
           </div>
         </div>
       </footer>

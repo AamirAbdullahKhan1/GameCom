@@ -20,18 +20,18 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 flex items-center justify-center">
+            <div className="w-[60px] h-[60px] flex items-center justify-center">
               <img
                 src="/gamecom-logo.png"
                 alt="GameCom Logo"
-                className="w-10 h-10 object-contain hover:scale-110 transition-transform duration-300"
+                className="w-[60px] h-[60px] object-contain hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="text-[26px] font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 GameCom
               </span>
-              <div className="text-xs text-gray-400">SRM Institute</div>
+              <div className="text-[14px] text-gray-400">SRM Institute</div>
             </div>
           </Link>
 
@@ -41,7 +41,7 @@ const Navigation = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="relative text-lg font-medium text-gray-300 hover:text-white transition-all duration-300 group"
+                className="relative uppercase font-semibold text-lg tracking-wide text-gray-300 hover:text-white transition-all duration-300 group"
               >
                 <span className="relative z-10">{item.label}</span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
@@ -52,7 +52,7 @@ const Navigation = () => {
               to="/login"
               className="relative bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg font-medium text-white overflow-hidden group"
             >
-              <span className="relative z-10">Login</span>
+              <span className="relative uppercase z-10">Login</span>
               <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
           </div>
@@ -70,7 +70,7 @@ const Navigation = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="block text-lg font-medium text-gray-300 hover:text-white transition-colors py-2"
+                className="block text-lg font-semibold uppercase text-gray-300 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
