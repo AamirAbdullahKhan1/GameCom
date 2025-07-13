@@ -8,6 +8,7 @@ import LandingPage from "./Pages/LandingPage"
 import LoginPage from "./Pages/LoginPage"
 import RegisterPage from "./Pages/RegisterPage"
 import DomainsPage from "./Pages/DomainsPage"
+import ComingSoonPage from "./Pages/ComingSoonPage"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/dashboard/president" element={<PresidentDashboard />} />
             <Route path="/dashboard/admin" element={<AdminDashboard />} />
             <Route path="/register-event" element={<EventRegistrationPage/>} />
+            <Route path="/coming-soon" element={<ComingSoonPage />} />
           </Routes>
         </div>
       </div>

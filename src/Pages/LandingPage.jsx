@@ -30,7 +30,7 @@ import {
   MapPin,
 } from "lucide-react"
 
-import Navigation from "../Components/Navigation"
+import Navigation from "../components/Navigation"
 import AnimatedBackground from "../components/AnimatedBackground"
 import TestimonialCarousel from "../Components/TestimonialCarousel"
 import TeamSection from "../Components/TeamSection"
@@ -54,7 +54,7 @@ const LandingPage = () => {
         "Master cutting-edge technologies including React, Node.js, Python, AI/ML, and cloud computing through hands-on projects and industry collaborations.",
       color: "from-blue-500 to-cyan-500",
       projects: ["Web Applications", "Mobile Apps", "AI Solutions", "Cloud Systems"],
-      members: 15,
+      members: 14,
       image:
         "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "blue",
@@ -78,7 +78,7 @@ const LandingPage = () => {
         "Craft beautiful digital experiences using UI/UX principles, graphic design, branding, and interactive prototyping with tools like Figma, Adobe Creative Suite.",
       color: "from-green-500 to-teal-500",
       projects: ["UI/UX Design", "Brand Identity", "Digital Art", "Prototypes"],
-      members: 10,
+      members: 4,
       image:
         "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "green",
@@ -102,7 +102,7 @@ const LandingPage = () => {
         "Connect with industry leaders, secure partnerships, organize events, and amplify our club's impact through strategic communication and networking.",
       color: "from-indigo-500 to-purple-500",
       projects: ["Industry Events", "Partnerships", "Social Media", "Networking"],
-      members: 5,
+      members: 7,
       image:
         "https://images.unsplash.com/photo-1709715357549-f2d587846ee1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       glowColor: "purple",
@@ -239,9 +239,9 @@ const LandingPage = () => {
 
   const stats = [
     { number: 40, label: "Active Members", icon: Users, suffix: "+" },
-    { number: 40, label: "Projects Completed", icon: Code, suffix: "+" },
-    { number: 5, label: "Industry Partners", icon: Zap, suffix: "+" },
-    { number: 3, label: "Events This Year", icon: Calendar, suffix: "+" },
+    { number: 30, label: "Projects Completed", icon: Code, suffix: "+" },
+    { number: 3, label: "Industry Partners", icon: Zap, suffix: "+" },
+    { number: 2, label: "Events This Year", icon: Calendar, suffix: "+" },
   ]
 
   const handleProjectNavigation = (direction, event) => {
@@ -283,7 +283,7 @@ const LandingPage = () => {
               className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-wider bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
               delay={500}
               duration={1200}
-              repeatInterval = {15000}
+              repeatInterval={15000}
               scrambleSpeed={40}
             />
           </div>
@@ -331,181 +331,86 @@ const LandingPage = () => {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full mx-auto mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
                   </div>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-1">
-                    <CountUpAnimation end={stat.number} suffix={stat.suffix} duration={2500} />
+                  <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    <CountUpAnimation end={stat.number} suffix={stat.suffix} duration={2000} />
                   </div>
-                  <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
+                  <div className="text-gray-400 text-sm">{stat.label}</div>
                 </GlowingCard>
               </TiltCard>
             ))}
           </div>
-        </div>
 
-      </section>
-
-      {/* Enhanced Featured Projects Gallery - Fixed Navigation */}
-      <section id="projects" className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Featured Projects
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-              Discover the incredible projects our talented members have built, from award-winning games to innovative
-              applications
-            </p>
-          </div>
-
-          <div className="relative group">
-            {/* Navigation Buttons - Better positioned */}
-            <button
-              onClick={(e) => handleProjectNavigation("prev", e)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/90 hover:bg-gray-700/90 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 border border-gray-600"
-            >
-              <ChevronLeft className="w-6 h-6 text-white" />
-            </button>
-
-            <button
-              onClick={(e) => handleProjectNavigation("next", e)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-gray-800/90 hover:bg-gray-700/90 backdrop-blur-sm p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 border border-gray-600"
-            >
-              <ChevronRight className="w-6 h-6 text-white" />
-            </button>
-
-            <div className="overflow-hidden rounded-2xl cursor-pointer">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentProjectSlide * 100}%)` }}
-              >
-                {featuredProjects.map((project, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <div className="mx-2 sm:mx-4">
-                      <div className="bg-gray-800/50 rounded-2xl border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300 max-w-2xl mx-auto">
-                        <div className="relative">
-                          <img
-                            src={project.image || "/placeholder.svg"}
-                            alt={project.title}
-                            className="w-full h-48 sm:h-56 object-cover"
-                          />
-                          <div className="absolute top-4 right-4">
-                            <span
-                              className={`px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm ${
-                                project.status === "Published"
-                                  ? "bg-green-500/20 text-green-400"
-                                  : project.status === "Beta Testing"
-                                    ? "bg-blue-500/20 text-blue-400"
-                                    : project.status === "In Development"
-                                      ? "bg-yellow-500/20 text-yellow-400"
-                                      : "bg-purple-500/20 text-purple-400"
-                              }`}
-                            >
-                              {project.status}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white">{project.title}</h3>
-                          <p className="text-gray-400 mb-4 leading-relaxed text-sm sm:text-base">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tech.map((tech, techIndex) => (
-                              <span
-                                key={techIndex}
-                                className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs sm:text-sm"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-gray-500 text-sm">by {project.team}</span>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Project Indicators */}
-            <div className="flex justify-center mt-6 sm:mt-8 gap-2">
-              {featuredProjects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentProjectSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentProjectSlide ? "bg-blue-400 scale-125" : "bg-gray-600 hover:bg-gray-500"
-                  }`}
-                />
-              ))}
-            </div>
+          <div className="mt-12 animate-bounce">
+            <ChevronDown className="w-8 h-8 mx-auto text-gray-400" />
           </div>
         </div>
       </section>
 
-      {/* Domains Section with Tilt Cards */}
-      <section id="domains" className="relative z-10 py-12 sm:py-20 px-4">
+      {/* Enhanced Domains Section */}
+      <section id="domains" className="relative z-10 py-20 px-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Our Domains
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto px-4">
-              Explore diverse pathways to excellence across technology, creativity, and innovation. Each domain offers
-              specialized training and real-world project experience.
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Choose your path and master the skills that will define your future in technology
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {domains.map((domain, index) => (
-              <TiltCard key={index} className="h-full">
+              <TiltCard key={index} className="group cursor-pointer">
                 <GlowingCard
                   glowColor={domain.glowColor}
-                  className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 h-full overflow-hidden group"
+                  className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden h-full"
                 >
-                  <div className="relative">
+                  <div className="relative h-48 overflow-hidden">
                     <img
                       src={domain.image || "/placeholder.svg"}
                       alt={domain.name}
-                      className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                    <div className="absolute top-4 right-4">
                       <div
-                        className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${domain.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-12 h-12 bg-gradient-to-r ${domain.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}
                       >
-                        <domain.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <domain.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold text-white">{domain.name}</h3>
-                        <p className="text-gray-300 text-xs sm:text-sm">
-                          <CountUpAnimation end={domain.members} /> Active Members
-                        </p>
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center justify-between text-white">
+                        <span className="text-sm font-medium">
+                          <CountUpAnimation end={domain.members} /> Members
+                        </span>
+                        <span className="text-sm">Active Projects</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-4 sm:p-6">
-                    <p className="text-gray-400 leading-relaxed mb-4 text-sm sm:text-base">{domain.description}</p>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                      {domain.name}
+                    </h3>
+                    <p className="text-gray-400 mb-4 leading-relaxed">{domain.description}</p>
 
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-gray-300 mb-2">Key Focus Areas:</h4>
+                      <h4 className="text-sm font-semibold text-white mb-2">Key Projects:</h4>
                       <div className="flex flex-wrap gap-2">
                         {domain.projects.map((project, projectIndex) => (
                           <span
                             key={projectIndex}
-                            className="px-3 py-1 bg-gray-700/50 text-gray-300 rounded-full text-xs sm:text-sm"
+                            className="px-2 py-1 bg-gray-700/50 text-gray-300 rounded-full text-xs"
                           >
                             {project}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <Link to={"/domains"} onClick={() => window.scrollTo(0,0)}>
-                      <AnimatedButton variant="secondary" className="w-full">
+
+                    <Link to="/domains" onClick={() => window.scrollTo(0,0)}>
+                      <AnimatedButton variant="secondary" className="w-full group-hover:bg-blue-600 transition-colors">
                         Learn More
                         <ArrowRight className="w-4 h-4" />
                       </AnimatedButton>
@@ -515,33 +420,163 @@ const LandingPage = () => {
               </TiltCard>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <Link to="/domains" onClick={() => window.scrollTo(0,0)}>
+              <AnimatedButton size="lg">
+                <Target className="w-6 h-6" />
+                Explore All Domains
+                <ArrowRight className="w-6 h-6" />
+              </AnimatedButton>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section className="relative z-10 py-12 sm:py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Our Achievements
+      {/* Enhanced Featured Projects Section */}
+      <section id="projects" className="relative z-10 py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Featured Projects
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 px-4">
-              Celebrating excellence and innovation in everything we do
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Discover the innovative solutions and creative projects built by our talented community
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-            {achievements.map((achievement, index) => (
-              <TiltCard key={index} className="text-center group">
-                <GlowingCard
-                  glowColor="yellow"
-                  className="p-6 rounded-2xl bg-gray-800/30 backdrop-blur-sm border border-gray-700"
-                >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <achievement.icon className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
+          <div className="relative">
+            <TiltCard className="group cursor-pointer">
+              <GlowingCard
+                glowColor="purple"
+                className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+                  <div className="relative">
+                    <img
+                      src={featuredProjects[currentProjectSlide].image || "/placeholder.svg"}
+                      alt={featuredProjects[currentProjectSlide].title}
+                      className="w-full h-64 sm:h-80 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          featuredProjects[currentProjectSlide].status === "Published"
+                            ? "bg-green-500/20 text-green-400"
+                            : featuredProjects[currentProjectSlide].status === "Beta Testing"
+                              ? "bg-blue-500/20 text-blue-400"
+                              : "bg-yellow-500/20 text-yellow-400"
+                        }`}
+                      >
+                        {featuredProjects[currentProjectSlide].status}
+                      </span>
+                    </div>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-white">{achievement.title}</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm px-2">{achievement.description}</p>
+
+                  <div className="flex flex-col justify-center">
+                    <div className="mb-4">
+                      <span className="text-blue-400 text-sm font-medium">
+                        {featuredProjects[currentProjectSlide].team}
+                      </span>
+                    </div>
+                    <h3 className="text-3xl font-bold mb-4 text-white">
+                      {featuredProjects[currentProjectSlide].title}
+                    </h3>
+                    <p className="text-gray-400 mb-6 leading-relaxed text-lg">
+                      {featuredProjects[currentProjectSlide].description}
+                    </p>
+
+                    <div className="mb-6">
+                      <h4 className="text-white font-semibold mb-3">Technologies Used:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {featuredProjects[currentProjectSlide].tech.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <AnimatedButton>
+                        <ExternalLink className="w-5 h-5" />
+                        View Project
+                      </AnimatedButton>
+                      <AnimatedButton variant="secondary">
+                        <Github className="w-5 h-5" />
+                        Source Code
+                      </AnimatedButton>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Navigation Controls */}
+                <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+                  <AnimatedButton
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => handleProjectNavigation("prev", e)}
+                    className="bg-gray-800/80 backdrop-blur-sm hover:bg-gray-700/80"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </AnimatedButton>
+                </div>
+                <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+                  <AnimatedButton
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => handleProjectNavigation("next", e)}
+                    className="bg-gray-800/80 backdrop-blur-sm hover:bg-gray-700/80"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </AnimatedButton>
+                </div>
+
+                {/* Slide Indicators */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                  {featuredProjects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentProjectSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-colors ${
+                        index === currentProjectSlide ? "bg-blue-400" : "bg-gray-600"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </GlowingCard>
+            </TiltCard>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Achievements Section */}
+      <section className="relative z-10 py-20 px-4 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              Our Achievements
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Recognition and milestones that showcase our commitment to excellence
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {achievements.map((achievement, index) => (
+              <TiltCard key={index} className="text-center group cursor-pointer">
+                <GlowingCard
+                  glowColor="purple"
+                  className="p-6 rounded-2xl bg-gray-800/30 backdrop-blur-sm border border-gray-700 h-full"
+                >
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <achievement.icon className="w-8 h-8 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">{achievement.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{achievement.description}</p>
                 </GlowingCard>
               </TiltCard>
             ))}
@@ -549,15 +584,68 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="relative z-10 py-12 sm:py-20 px-4 bg-gray-800/20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              What Our Members Say
+      {/* Enhanced Event Gallery Section */}
+      {/**<section className="relative z-10 py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Event Gallery
             </h2>
-            <p className="text-lg sm:text-xl text-gray-400 px-4">
-              Hear from our amazing community of current members and successful alumni
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Capturing moments from our workshops, competitions, and community gatherings
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {eventGallery.map((event, index) => (
+              <TiltCard key={index} className="group cursor-pointer">
+                <GlowingCard
+                  glowColor="blue"
+                  className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden"
+                >
+                  <div className="relative">
+                    <img
+                      src={event.image || "/placeholder.svg"}
+                      alt={event.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                    <div className="absolute top-4 right-4">
+                      <span className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium">
+                        {event.date}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold mb-1">{event.title}</h3>
+                      <p className="text-gray-300 text-sm">{event.description}</p>
+                    </div>
+                  </div>
+                </GlowingCard>
+              </TiltCard>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/coming-soon">
+              <AnimatedButton size="lg">
+                <Calendar className="w-6 h-6" />
+                Join Our Events
+                <ArrowRight className="w-6 h-6" />
+              </AnimatedButton>
+            </Link>
+          </div>
+        </div>
+      </section>}
+
+      {/* Enhanced Testimonials Section */}
+      <section className="relative z-10 py-20 px-4 bg-gradient-to-r from-green-900/20 to-blue-900/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              What Our Community Says
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Hear from our members and alumni about their transformative experiences at GameCom
             </p>
           </div>
 
@@ -565,41 +653,48 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Enhanced Team Section */}
       <TeamSection />
 
-      {/* Call to Action */}
-      <section className="relative z-10 py-12 sm:py-20 px-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
+      {/* Enhanced Call to Action */}
+      <section className="relative z-10 py-20 px-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Ready to Join Us?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed px-4">
-            Take the first step towards an incredible journey of learning, building, and growing with like-minded
-            innovators.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
-            <Link to="/register">
-              <AnimatedButton size="lg" className="w-full sm:w-auto">
-                <Heart className="w-5 h-5 sm:w-6 sm:h-6" />
-                Become a Member
-              </AnimatedButton>
-            </Link>
-
-            <Link to="/register-event">
-              <AnimatedButton variant="secondary" size="lg" className="w-full sm:w-auto">
-                <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
-                Join Our Events
-              </AnimatedButton>
-            </Link>
-          </div>
+          <TiltCard>
+            <GlowingCard
+              glowColor="blue"
+              className="p-12 rounded-3xl bg-gray-800/30 backdrop-blur-sm border border-gray-700"
+            >
+              <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Ready to Level Up?
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
+                Join GameCom today and become part of SRM's most innovative tech community. Build amazing projects,
+                learn cutting-edge skills, and connect with like-minded creators.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link to="/register">
+                  <AnimatedButton size="lg">
+                    <Heart className="w-6 h-6" />
+                    Join GameCom
+                    <ArrowRight className="w-6 h-6" />
+                  </AnimatedButton>
+                </Link>
+                <Link to="/coming-soon">
+                  <AnimatedButton variant="secondary" size="lg">
+                    <Target className="w-6 h-6" />
+                    Join Our Events
+                  </AnimatedButton>
+                </Link>
+              </div>
+            </GlowingCard>
+          </TiltCard>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-gray-900 border-t border-gray-800 py-12 sm:py-16 px-4">
+      {/* Enhanced Footer */}
+      <footer className="relative z-10 bg-gray-900 border-t border-gray-800 py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
@@ -609,25 +704,25 @@ const LandingPage = () => {
                   </div>
                 </TiltCard>
                 <div>
-                  <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     GameCom
                   </span>
                   <div className="text-xs text-gray-400">SRM Institute of Science and Technology</div>
                 </div>
               </div>
-              <p className="text-gray-400 mb-4 leading-relaxed text-sm sm:text-base">
+              <p className="text-gray-400 mb-4 leading-relaxed">
                 Empowering the next generation of tech innovators through hands-on learning, collaborative projects, and
                 industry connections.
               </p>
               <div className="flex space-x-4">
                 <AnimatedButton variant="ghost" size="sm">
+                  <Github className="w-5 h-5" />
+                </AnimatedButton>
+                <AnimatedButton variant="ghost" size="sm">
                   <Instagram className="w-5 h-5" />
                 </AnimatedButton>
                 <AnimatedButton variant="ghost" size="sm">
                   <Twitter className="w-5 h-5" />
-                </AnimatedButton>
-                <AnimatedButton variant="ghost" size="sm">
-                  <Github className="w-5 h-5" />
                 </AnimatedButton>
               </div>
             </div>
@@ -636,15 +731,15 @@ const LandingPage = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
               <div className="space-y-2">
-                <a href="#domains" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                <Link to="/#domains" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Our Domains
-                </a>
-                <a href="#projects" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                </Link>
+                <Link to="/#projects" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Projects
-                </a>
-                <a href="#team" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                </Link>
+                <Link to="/#team" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Team
-                </a>
+                </Link>
                 <Link to="/register" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Join Us
                 </Link>
@@ -671,9 +766,9 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-6 sm:pt-8 text-center">
+          <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-500 text-sm">© 2024 GameCom - SRM Institute. All rights reserved.</p>
-            <p className="text-gray-600 text-xs sm:text-sm mt-2">Built with ❤️ by GameCom Technical Team</p>
+            <p className="text-gray-600 text-xs mt-2">Built with ❤️ by GameCom Technical Team</p>
           </div>
         </div>
       </footer>

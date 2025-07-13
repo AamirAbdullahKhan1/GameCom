@@ -24,12 +24,12 @@ import {
   Heart,
 } from "lucide-react"
 
-import Navigation from "../Components/Navigation"
+import Navigation from "../components/Navigation"
 import TiltCard from "../components/ReactBits/TiltCard"
 import AnimatedButton from "../components/ReactBits/AnimatedButton"
 import GlowingCard from "../components/ReactBits/GlowingCard"
 import CountUpAnimation from "../components/ReactBits/CountUpAnimation"
-import FloatingElements from "../components/ReactBits/FloatingElements"
+import EnhancedFloatingElements from "../Components/ReactBits/EnhancedFloatingElements"
 
 const DomainsPage = () => {
   const domains = [
@@ -81,14 +81,8 @@ const DomainsPage = () => {
         "Product Manager",
         "Technical Lead",
       ],
-      achievements: [
-        "SIH'23 Runner Ups",
-        "Published 2 Research Papers",
-        "Deployed 16+ Production Applications",
-      ],
-      upcomingEvents: [
-        { name: "Coming Soon", date: "Tentative", type: "Workshop" },
-      ],
+      achievements: ["SIH'23 Runner Ups", "Published 2 Research Papers", "Deployed 16+ Production Applications"],
+      upcomingEvents: [{ name: "Coming Soon", date: "Tentative", type: "Workshop" }],
     },
     {
       id: "media",
@@ -135,13 +129,8 @@ const DomainsPage = () => {
         "Brand Photographer",
         "Creative Director",
       ],
-      achievements: [
-        "Created Content for 3+ Brands",
-      ],
-      upcomingEvents: [
-        { name: "Coming Soon", date: "Tentative", type: "Workshop" },
-        
-      ],
+      achievements: ["Created Content for 3+ Brands"],
+      upcomingEvents: [{ name: "Coming Soon", date: "Tentative", type: "Workshop" }],
     },
     {
       id: "design",
@@ -187,13 +176,8 @@ const DomainsPage = () => {
         "Creative Director",
         "Design Researcher",
       ],
-      achievements: [
-        "Designed 2 Mobile Applications",
-        "Created Brand Identity for 2 Startups",
-      ],
-      upcomingEvents: [
-        { name: "Coming Soon", date: "Tentative", type: "Mentorship" },
-      ],
+      achievements: ["Designed 2 Mobile Applications", "Created Brand Identity for 2 Startups"],
+      upcomingEvents: [{ name: "Coming Soon", date: "Tentative", type: "Mentorship" }],
     },
     {
       id: "gamedev",
@@ -245,9 +229,7 @@ const DomainsPage = () => {
         "Won 2 Game Jam Competitions",
         "Developed VR Experience for Education",
       ],
-      upcomingEvents: [
-        { name: "Coming Soon", date: "Tentative", type: "Seminar" },
-      ],
+      upcomingEvents: [{ name: "Coming Soon", date: "Tentative", type: "Seminar" }],
     },
     {
       id: "pr",
@@ -294,26 +276,21 @@ const DomainsPage = () => {
         "Communications Lead",
         "Partnership Manager",
       ],
-      achievements: [
-        "Organized 5+ Successful Events",
-        "Built Network of 3+ Industry Partners",
-      ],
-      upcomingEvents: [
-        { name: "Coming Soon", date: "Tentative", type: "Networking" },
-      ],
+      achievements: ["Organized 5+ Successful Events", "Built Network of 3+ Industry Partners"],
+      upcomingEvents: [{ name: "Coming Soon", date: "Tentative", type: "Networking" }],
     },
   ]
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
-      <FloatingElements count={20} />
+      <EnhancedFloatingElements count={20} />
       <Navigation />
 
       {/* Header Section */}
       <section className="relative z-10 pt-24 pb-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
-            <Link to="/">
+            <Link to="/" onClick={() => window.scrollTo(0,0)}>
               <AnimatedButton variant="ghost" size="sm">
                 <ArrowLeft className="w-5 h-5" />
                 Back to Home
@@ -548,13 +525,13 @@ const DomainsPage = () => {
             passionate learners and innovators.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link to="/register">
+            <Link to="/register" onClick={() => window.scrollTo(0,0)}>
               <AnimatedButton size="lg">
                 <Heart className="w-6 h-6" />
                 Join GameCom Today
               </AnimatedButton>
             </Link>
-            <Link to="/">
+            <Link to="/" onClick={() => window.scrollTo(0,0)}>
               <AnimatedButton variant="secondary" size="lg">
                 <ArrowLeft className="w-6 h-6" />
                 Back to Home
