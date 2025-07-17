@@ -30,18 +30,18 @@ import {
   MapPin,
 } from "lucide-react"
 
-import Navigation from "../components/Navigation"
-import AnimatedBackground from "../components/AnimatedBackground"
-import TestimonialCarousel from "../Components/TestimonialCarousel"
-import TeamSection from "../Components/TeamSection"
+import Navigation from "../components/Navigation.jsx"
+import AnimatedBackground from "../components/AnimatedBackground.jsx"
+import TestimonialCarousel from "../Components/TestimonialCarousel.jsx"
+import TeamSection from "../Components/TeamSection.jsx"
 
 // React Bits Components
-import CountUpAnimation from "../components/ReactBits/CountUpAnimation"
-import TiltCard from "../components/ReactBits/TiltCard"
-import AnimatedButton from "../components/ReactBits/AnimatedButton"
-import DecryptedText from "../Components/ReactBits/DecryptedText"
-import GlowingCard from "../components/ReactBits/GlowingCard"
-import FloatingElements from "../components/ReactBits/FloatingElements"
+import CountUpAnimation from "../components/ReactBits/CountUpAnimation.jsx"
+import TiltCard from "../components/ReactBits/TiltCard.jsx"
+import AnimatedButton from "../components/ReactBits/AnimatedButton.jsx"
+import DecryptedText from "../Components/ReactBits/DecryptedText.jsx"
+import GlowingCard from "../components/ReactBits/GlowingCard.jsx"
+import FloatingElements from "../components/ReactBits/FloatingElements.jsx"
 
 const LandingPage = () => {
   const [currentProjectSlide, setCurrentProjectSlide] = useState(0)
